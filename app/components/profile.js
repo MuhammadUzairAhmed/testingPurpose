@@ -108,8 +108,8 @@ class Profile extends Component {
                 {/* <View >
                     <Image source={require('./../assets/homeHeader.png')} style={{ width: '100%', height: 200 }} />
                 </View> */}
-                {/* 
-               <ScrollView>
+                
+               <ScrollView style={{paddingBottom:200}}>
                    <View>
                     <View style={styles.profileStyle}>
                         <Text style={{ fontSize: 30, padding: 5, color: 'white' }}>Donie Yen</Text>
@@ -183,7 +183,7 @@ class Profile extends Component {
                     </View>
                    
                     </View>
-                </ScrollView> */}
+                </ScrollView>
 
 
                
