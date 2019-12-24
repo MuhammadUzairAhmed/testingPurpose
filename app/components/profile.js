@@ -13,8 +13,8 @@ import {
     TouchableHighlight,
     Modal
 } from 'react-native'
-// import { Avatar, ListItem, Card, Button } from 'react-native-elements';
-// import Icon from 'react-native-vector-icons/AntDesign';
+import { Avatar, ListItem, Card, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/AntDesign';
 class Profile extends Component {
     // constructor(props) {
     //     super(props)
@@ -85,9 +85,9 @@ class Profile extends Component {
     //         ]
     //     }
     // }
-    // closed = () => {
-    //     this.props.closeEvent(false)
-    // }
+    closed = () => {
+        this.props.closeEvent(false)
+    }
     // renderRow = ({ item }) => {
     //     return (
     //         <View style={styles.item}>
@@ -105,11 +105,11 @@ class Profile extends Component {
     render() {
         return (
             <View  >
-                <Text>profile</Text>
-                {/* <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
+                <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
                 <View >
                     <Image source={require('./../assets/homeHeader.png')} style={{ width: '100%', height: 200 }} />
                 </View>
+                {/* 
                <ScrollView>
                    <View>
                     <View style={styles.profileStyle}>

@@ -105,7 +105,7 @@ class Main extends Component {
           </View>
         </Modal>
 
-        {this.state.eventVisible == false && this.state.profileVisible == false ?  <ScrollView  contentContainerStyle={styles.header}><ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
+        {this.state.eventVisible == false && this.state.profileVisible == false ?  <ScrollView  contentContainerStyle={styles.header1}><ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
         
           <View>
             <View style={{ width: '100%', height: '100%' }}>
@@ -193,9 +193,9 @@ const styles = StyleSheet.create({
 
     flexDirection: 'column',
     padding: 0,
-    margin: 30,
+    marginBottom: 30,
     marginLeft: 15,
-    marginTop: 40
+   
   },
   menuList: {
     flexDirection: "row",
@@ -208,7 +208,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(47,163,218, .4)',
     height: 250
   },
-
+  header1: {
+     
+    height: '100%',
+    width: '100%'
+  },
   header: {
     height: '100%',
     width: '100%'
