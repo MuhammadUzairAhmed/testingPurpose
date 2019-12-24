@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Event from './event'
 import Profile from './profile';
+import Contacts from './contacts';
 
 
 class Main extends Component {
@@ -30,6 +31,7 @@ class Main extends Component {
       modalImage: '',
       eventVisible: false,
       profileVisible: false,
+      contactVisible:false,
       data: [
         { id: 1, title: "profile", name: 'user', color: "#FF4500", image: "https://img.icons8.com/color/70/000000/name.png" },
         { id: 2, title: "Home", name: 'home', color: "#87CEEB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
@@ -45,20 +47,23 @@ class Main extends Component {
   }
   getData = (item) => {
     if (item.name == 'table') {
-      this.setState({ eventVisible: true })
-    } else {
+      this.setState({ eventVisible: true,contactVisible:false })
+    } else if(item.name == 'contacts'){
+        this.setState({ contactVisible: true,eventVisible:false })
+    }
+    else{
       this.setState({ modalName: item.title, modalImage: item.image, modalVisible: true })
     }
   }
   setModalVisible(visible) {
     this.setState({ modalVisible: visible }, () => {
       if (this.state.modalName == 'profile') {
-        this.setState({ eventVisible: false, profileVisible: true })
+        this.setState({ eventVisible: false, profileVisible: true,contactVisible:false })
       }
     });
   }
   closedAll = (closed) => {
-    this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed })
+    this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed,contactVisible:closed })
   }
   render() {
 
@@ -138,6 +143,7 @@ class Main extends Component {
         {this.state.eventVisible &&
           <Event closeEvent={this.closedAll} />}
         {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
+        {this.state.contactVisible && <Contacts />}
 
       </View>
     );
