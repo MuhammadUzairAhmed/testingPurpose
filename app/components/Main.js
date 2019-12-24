@@ -17,8 +17,8 @@ import {
 import { Card, Button, Divider } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
-// import Event from './components/event'
-// import Profile from './components/profile';
+import Event from './event'
+import Profile from './profile';
 
 
 class Main extends Component {
@@ -105,8 +105,8 @@ class Main extends Component {
           </View>
         </Modal>
 
-        {this.state.eventVisible == false && this.state.profileVisible == false ? <ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
-         
+        {this.state.eventVisible == false && this.state.profileVisible == false ?  <ScrollView  contentContainerStyle={styles.header}><ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
+        
           <View>
             <View style={{ width: '100%', height: '100%' }}>
 
@@ -132,11 +132,12 @@ class Main extends Component {
             </View>
           </View>
         </ImageBackground>
+        </ScrollView>
 
           : null}
-        {/* {this.state.eventVisible &&
+        {this.state.eventVisible &&
           <Event closeEvent={this.closedAll} />}
-        {this.state.profileVisible && <Profile closeEvent={this.closedAll} />} */}
+        {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
 
       </View>
     );
