@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Event from './event'
 import Profile from './profile';
-import Contacts from './contacts';
+import Contacts from './contacts'
 
 
 class Main extends Component {
@@ -110,7 +110,7 @@ class Main extends Component {
           </View>
         </Modal>
 
-        {this.state.eventVisible == false && this.state.profileVisible == false ?  <ScrollView  contentContainerStyle={styles.header1}><ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
+        {this.state.eventVisible == false && this.state.profileVisible == false && this.state.contactVisible == false ?  <ScrollView  contentContainerStyle={styles.header1}><ImageBackground source={require('./../assets/pexels-photo-699466.jpeg')} style={styles.header}>
         
           <View>
             <View style={{ width: '100%', height: '100%' }}>
@@ -143,7 +143,7 @@ class Main extends Component {
         {this.state.eventVisible &&
           <Event closeEvent={this.closedAll} />}
         {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
-        {this.state.contactVisible && <Contacts />}
+        {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />}
 
       </View>
     );
