@@ -41,7 +41,7 @@ class Main extends Component {
         { id: 6, title: "message", name: 'mail', color: "#00BFFF", image: "https://img.icons8.com/color/70/000000/classroom.png" },
         { id: 7, title: "contacts", name: 'contacts', color: "#00FFFF", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
         { id: 8, title: "idcard", name: 'idcard', color: "#20B2AA", image: "https://img.icons8.com/dusk/70/000000/globe-earth.png" },
-        { id: 9, title: "slack", name: 'slack', color: "#008080", image: "https://img.icons8.com/color/70/000000/basketball.png" },
+       
       ]
     };
   }
