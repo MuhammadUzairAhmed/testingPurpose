@@ -13,7 +13,7 @@ import {
     TouchableHighlight,
     Modal
 } from 'react-native'
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome';
 class Profile extends Component {
     // constructor(props) {
     //     super(props)
@@ -104,12 +104,12 @@ class Profile extends Component {
     render() {
         return (
             <View  >
-                <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
+                <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='caret-left' size={20} color="black" />
                 {/* <View >
                     <Image source={require('./../assets/homeHeader.png')} style={{ width: '100%', height: 200 }} />
                 </View> */}
                 
-               <ScrollView style={{paddingBottom:200}}>
+               <ScrollView style={{paddingBottom:350}}>
                    <View>
                     <View style={styles.profileStyle}>
                         <Text style={{ fontSize: 30, padding: 5, color: 'white' }}>Donie Yen</Text>
@@ -120,7 +120,7 @@ class Profile extends Component {
 
                         <View style={styles.profStyle}>
                             <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Overview</Text>
-                            <Icon name="edit" size={25} color="black" style={{ marginTop: 2 }} />
+                            <Icon name="pencil" size={25} color="black" style={{ marginTop: 2 }} />
                         </View>
                         <Text style={styles.profInfo}>position: Software Engineer</Text>
                         <Text style={styles.profInfo}>Company: Cloud Coherence</Text>
@@ -131,8 +131,8 @@ class Profile extends Component {
                         <View style={styles.EduStyle}>
                             <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Work</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2 }} />
-                                <Icon name="edit" size={25} color="black" style={{ marginTop: 2 }} />
+                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2,marginRight:4 }} />
+                                <Icon name="pencil" size={25} color="black" style={{ marginTop: 2 }} />
                             </View>
                         </View>
                         <View style={styles.profInfo}>
@@ -144,8 +144,8 @@ class Profile extends Component {
                         <View style={styles.EduStyle}>
                             <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Education</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2 }} />
-                                <Icon name="edit" size={25} color="black" style={{ marginTop: 2 }} />
+                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2,marginRight:4 }} />
+                                <Icon name="pencil" size={25} color="black" style={{ marginTop: 2 }} />
                             </View>
                         </View>
                         <View style={styles.profInfo}>
@@ -157,8 +157,8 @@ class Profile extends Component {
                         <View style={styles.EduStyle}>
                             <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Contact</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2 }} />
-                                <Icon name="edit" size={25} color="black" style={{ marginTop: 2 }} />
+                                <Icon name="plus" size={25} color="black" style={{ marginTop: 2,marginRight:4 }} />
+                                <Icon name="pencil" size={25} color="black" style={{ marginTop: 2 }} />
                             </View>
                         </View>
                         <View style={styles.profInfo}>
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     },
     image: { width: '100%', height: 250 },
     eduitem: {},
-    item: { backgroundColor: '#E1E1E1' },
+    item: {  },
     header: {
         height: '100%',
         width: '100%'
