@@ -123,7 +123,7 @@ class Main extends Component {
 
                                     <View style={styles.headerContent}>
                                         <View>
-                                        <Icon name='bars' size={18} color="blue" />
+                                        <Icon name='bars' size={18} color="grey" />
                                         </View>
                                         <View>
                                             <Text style={{ fontSize: 22, color: 'grey' }}>Discovery App</Text>
@@ -146,13 +146,7 @@ class Main extends Component {
                                     containerStyle={{padding:0,margin:0,height: 30,width:'95%',backgroundColor:'grey'}}
                                     />
                                 </View>
-                                {/* <SearchBar
-                                    placeholder="Type Here..."
-                                    onChangeText={this.updateSearch}
-                                    value={search}
-                                /> */}
-                                
-                                <View style={styles.menuItems}>
+                               <View style={styles.menuItems}>
                                     <View style={styles.menuList}>
                                         {data.map((item) => {
                                             return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => this.getData(item)}>
@@ -184,6 +178,9 @@ class Main extends Component {
 };
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
     backPopup: {
         flexDirection: 'row',
         backgroundColor: 'grey',

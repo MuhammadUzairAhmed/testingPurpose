@@ -104,12 +104,19 @@ class Profile extends Component {
     render() {
         return (
             <View  >
-                <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='caret-left' size={20} color="black" />
+                <View style={styles.headerContent}>
+          <View>
+          <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='caret-left' size={20} color="black" />
+               </View>
+          <View>
+              <Text style={{ fontSize: 22, color: 'grey',paddingRight:10 }}>Discovery App</Text>
+            </View>
+          </View>
                 {/* <View >
                     <Image source={require('./../assets/homeHeader.png')} style={{ width: '100%', height: 200 }} />
                 </View> */}
                 
-               <ScrollView style={{paddingBottom:350}}>
+               <ScrollView >
                    <View>
                     <View style={styles.profileStyle}>
                         <Text style={{ fontSize: 30, padding: 5, color: 'white' }}>Donie Yen</Text>
@@ -212,6 +219,17 @@ const styles = StyleSheet.create({
     header: {
         height: '100%',
         width: '100%'
+    },
+    headerContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+       alignItems: 'center',
+       paddingBottom:5,
+        width: '100%',
+        opacity: 0.7,
+        borderBottomWidth:4,
+        borderBottomColor:'grey'
     }
 })
 export default Profile;

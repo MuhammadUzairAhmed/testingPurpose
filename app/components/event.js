@@ -148,10 +148,33 @@ export default class Home extends Component {
     render() {
         const  Sheight  = this.state.changeableHeight;
         return (
-            <View style={{ Height: "auto", maxHeight: Sheight,marginBottom:60,paddingBottom:60}}>
-                {!this.state.eventCat && <Icon onPress={this.closed} style={{ marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />}
-                {this.state.eventCat && <Icon onPress={this.closedCategory} style={{ marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />}
+            <View style={{ height: "auto", maxHeight: Sheight,marginBottom:60,paddingBottom:60}}>
+                
+                <View style={styles.headerContent}>
+                                        <View>
+                                        {!this.state.eventCat && <Icon onPress={this.closed} style={{ marginLeft: 15, marginTop: 10 }} name='arrowleft' size={20} color="black" />}
+                                        {this.state.eventCat && <Icon onPress={this.closedCategory} style={{ marginLeft: 15, marginTop: 10 }} name='arrowleft' size={20} color="black" />}
+                
+                                        </View>
+                                        <View>
+                                            <Text style={{ fontSize: 22, color: 'grey',paddingRight:10 }}>Discovery App</Text>
+                                        </View>
+                                       
+                                     
+                                    </View>
+
                 <Image source={this.state.changeImage} style={{ width: '100%', height: '20%' }} />
+                {this.state.eventCat && <Text style={{fontWeight:'bold',fontSize:25}}>Event Category</Text>}
+                <View style={{height:'auto',borderWidth:2,borderColor:'grey'}}>
+                   <Picker
+                        style={styles.listStyle}
+                        selectedValue={this.state.pickerValue}
+                        onValueChange={ (item,index)=>this.changeMenu(item,index)}
+                        itemStyle={styles.listItems}
+                        >
+                            {this.state.data.map(item=><Picker.Item key={item.id} label={item.title} value={item.id} />)}
+                          </Picker>
+                   </View>
                 {!this.state.eventCat && <FlatList
                     data={this.state.data}
                     renderItem={({ item, index }) => {
@@ -175,8 +198,8 @@ export default class Home extends Component {
                 />
                 }
                 {this.state.eventCat && <View>
-                    <Text style={{fontWeight:'bold',fontSize:25}}>Event Category</Text>
-                   <View style={{height:'auto',borderWidth:2,borderColor:'grey'}}>
+                    {/* <Text style={{fontWeight:'bold',fontSize:25}}>Event Category</Text> */}
+                   {/* <View style={{height:'auto',borderWidth:2,borderColor:'grey'}}>
                    <Picker
                         style={styles.listStyle}
                         selectedValue={this.state.pickerValue}
@@ -185,7 +208,7 @@ export default class Home extends Component {
                         >
                             {this.state.data.map(item=><Picker.Item key={item.id} label={item.title} value={item.id} />)}
                           </Picker>
-                   </View>
+                   </View> */}
                     <FlatList
                     data={this.state.dispEvent}
                     renderItem={({ item, index }) => {
@@ -343,5 +366,16 @@ const styles = StyleSheet.create({
     userName: {
         fontSize: 16,
         color: "#151515"
+    },
+    headerContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+       alignItems: 'center',
+       paddingBottom:5,
+        width: '100%',
+        opacity: 0.7,
+        borderBottomWidth:4,
+        borderBottomColor:'grey'
     }
 });      

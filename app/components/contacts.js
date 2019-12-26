@@ -54,8 +54,18 @@ class Contacts extends Component{
 
   render() {
     return(
-      <View >
-           <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
+      <View style={{flex:1}} >
+        <View style={{flex:1}}>
+        <View style={styles.headerContent}>
+          <View>
+            <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
+          </View>
+          <View>
+              <Text style={{ fontSize: 22, color: 'grey',paddingRight:10 }}>Discovery App</Text>
+            </View>
+          </View>
+         </View>
+        <View style={{flex:11}}>
         <FlatList 
           extraData={this.state}
           data={this.state.calls}
@@ -63,6 +73,7 @@ class Contacts extends Component{
             return item.id;
           }}
           renderItem={this.renderItem}/>
+          </View>
       </View>
     );
   }
@@ -109,4 +120,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 15,
   },
+  
+    headerContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+       alignItems: 'center',
+       paddingBottom:5,
+        width: '100%',
+        opacity: 0.7,
+        borderBottomWidth:4,
+        borderBottomColor:'grey'
+    }
 }); 
