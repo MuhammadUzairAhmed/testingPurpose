@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,10 +7,11 @@ import {
   View,
   Text,
   StatusBar,
-  Button,TouchableOpacity
+  Button, TouchableOpacity
 } from 'react-native';
 import Main from './app/components/Main'
 import Eventlist from './app/components/listOfEvents';
+import LatesEvents from './app/components/latestEvents'
 import { createDrawerNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/AntDesign';
 // class App extends Component{
@@ -26,8 +27,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 class AboutScreen extends React.Component {
   static navigationOptions = {
     drawerLabel: 'About',
-    drawerIcon:()=>(<Icon name='bars' size={18} color="black" />),
-     // headerStyle: {
+    drawerIcon: () => (<Icon name='bars' size={18} color="black" />),
+    // headerStyle: {
     //   backgroundColor: '#f4511e',
     // },
     // headerTintColor: '#fff',
@@ -35,7 +36,7 @@ class AboutScreen extends React.Component {
     //   fontWeight: 'bold',
     // },
   };
-  
+
   render() {
     const { navigation } = this.props;
     const itemId = navigation.getParam('itemId', 'NO-ID');
@@ -45,10 +46,10 @@ class AboutScreen extends React.Component {
         <TouchableOpacity onPress={this.props.navigation.toggleDrawer}>
           <Text>Open Drawer</Text>
         </TouchableOpacity>
-        <Button title="Home" onPress={()=>this.props.navigation.navigate('Home')}/>
+        <Button title="Home" onPress={() => this.props.navigation.navigate('Home')} />
         <Text>About Screen</Text>
-    <Text>{itemId}</Text>
-    <Text>{otherParam}</Text>
+        <Text>{itemId}</Text>
+        <Text>{otherParam}</Text>
       </View>
     );
   }
@@ -56,19 +57,21 @@ class AboutScreen extends React.Component {
 
 const singleHomeNavigation = createStackNavigator({
   Home: Main
-  
-},{
-defaultNavigationOptions:{
-  title:'homes'
-}}
+
+}, {
+  defaultNavigationOptions: {
+    title: 'homes'
+  }
+}
 )
 const singleAboutNavigation = createStackNavigator({
   About: AboutScreen
 }
-,{
-  defaultNavigationOptions:{
-    title:'Abouts'
-  }}
+  , {
+    defaultNavigationOptions: {
+      title: 'Abouts'
+    }
+  }
 )
 
 const bottomNavigator = createBottomTabNavigator(
@@ -77,31 +80,32 @@ const bottomNavigator = createBottomTabNavigator(
     About: singleAboutNavigation,
   },
   {
-    defaultNavigationOptions:({navigation})=>{
-      return{
-        tabBarIcon:({tintcolor})=>{
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        tabBarIcon: ({ tintcolor }) => {
           const { routeName } = navigation.state;
           let myicon;
-          if(routeName == 'Home'){
-            myicon='home'
-          }else if(routeName == 'About'){
-            myicon='bars'
+          if (routeName == 'Home') {
+            myicon = 'home'
+          } else if (routeName == 'About') {
+            myicon = 'bars'
           }
           return <Icon name={myicon} size={18} color={tintcolor} />
         },
-        tabBarOptions:{
+        tabBarOptions: {
           activeTintColor: '#fff',
           activeBackgroundColor: 'grey',
         }
       }
     }
   }
-  );
+);
 
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: Main,
-    About: AboutScreen
+    About: AboutScreen,
+    Events: LatesEvents
   }
   ,
   {
@@ -115,20 +119,22 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 const AppNavigator = createStackNavigator({
-  defaulthome : DrawerNavigator
-} 
-,{
-  defaultNavigationOptions:({navigation})=>{ return{
-    headerLeft:  <Icon name='bars' size={18} color="white" onPress={()=>navigation.toggleDrawer()} />,
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: 'red',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  }}
+  defaulthome: DrawerNavigator
 }
+  , {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: <Icon name='bars' size={18} color="white" onPress={() => navigation.toggleDrawer()} />,
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: 'red',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }
+    }
+  }
 );
 
 export default createAppContainer(DrawerNavigator);
