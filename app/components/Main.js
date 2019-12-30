@@ -14,16 +14,21 @@ import {
     TouchableHighlight,
     Modal
 } from 'react-native';
-import { Card, Button, Divider ,SearchBar, ButtonGroup} from 'react-native-elements';
+import { Card, Button, Divider, SearchBar, ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome'
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Event from './event'
 import Profile from './profile';
 import Contacts from './contacts'
-
+import CheckAnimation from './checkAnimation'
 
 class Main extends Component {
+    static navigationOptions = {
+        drawerLabel: 'Home',
+        drawerIcon:()=>(<Icon name='home' size={18} color="black" />)
+        
+      };
     constructor(props) {
         super(props);
         this.state = {
@@ -67,13 +72,12 @@ class Main extends Component {
         this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed, contactVisible: closed })
     }
     render() {
-        const { search } = this.state;
-        const buttons = ['Invite', 'Chat','Followers']
-  const { selectedIndex } = this.state
+       
+        const buttons = ['Invite', 'Chat', 'Followers']
+        const { selectedIndex } = this.state
         const { data, modalName, modalImage } = this.state
         return (
-            <View style={styles.container}>
-
+            <View style={styles.container} >
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -113,40 +117,43 @@ class Main extends Component {
                     </View>
                 </Modal>
 
-                {this.state.eventVisible == false && this.state.profileVisible == false && this.state.contactVisible == false ? <ScrollView contentContainerStyle={styles.header1}><ImageBackground  style={styles.header}>
+                {this.state.eventVisible == false && this.state.profileVisible == false && this.state.contactVisible == false ? <ScrollView contentContainerStyle={styles.header1}><ImageBackground style={styles.header}>
 
                     <View>
                         <View style={{ width: '100%', height: '100%' }}>
 
                             <View style={styles.bodyOverlay}>
-                                <View style={{backgroundColor:'white'}}>
+                                <View style={{ backgroundColor: 'white' }}>
 
                                     <View style={styles.headerContent}>
                                         <View>
-                                        <Icon name='bars' size={18} color="grey" />
+                                        <Icon name='bars' size={18} color="grey" onPress={()=>this.props.navigation.toggleDrawer()} />
                                         </View>
                                         <View>
-                                            <Text style={{ fontSize: 22, color: 'grey' }}>Discovery App</Text>
+                                            <Text style={{ fontSize: 22, color: 'grey' }} onPress={()=>this.props.navigation.navigate('About', {
+                                                    itemId: 86,
+                                                    otherParam: 'anything you want here',
+                                                    })}>Discovery App</Text>
                                         </View>
-                                        <View style={{flexDirection:'row'}}>
+                                        <View style={{ flexDirection: 'row' }}>
                                             <Text style={styles.name}>
                                                 Welcome, John
                                             </Text>
                                             <Icon name='poweroff' size={15} color="red" />
                                         </View>
-                                     
+
                                     </View>
-                                    
+
                                     <ButtonGroup
-                                    onPress={this.updateIndex}
-                                    selectedIndex={selectedIndex}
-                                    buttons={buttons}
-                                    containerBorderRadius={0}
-                                    textStyle={{color:'white'}}
-                                    containerStyle={{padding:0,margin:0,height: 30,width:'95%',backgroundColor:'grey'}}
+                                        onPress={this.updateIndex}
+                                        selectedIndex={selectedIndex}
+                                        buttons={buttons}
+                                        containerBorderRadius={0}
+                                        textStyle={{ color: 'white' }}
+                                        containerStyle={{ padding: 0, margin: 0, height: 30, width: '95%', backgroundColor: 'grey' }}
                                     />
                                 </View>
-                               <View style={styles.menuItems}>
+                                <View style={styles.menuItems}>
                                     <View style={styles.menuList}>
                                         {data.map((item) => {
                                             return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => this.getData(item)}>
@@ -157,20 +164,22 @@ class Main extends Component {
                                 </View>
                             </View>
                         </View>
-                    
+
                     </View>
                 </ImageBackground>
-                <View style={{position: 'absolute', left: '80%', right: 0, bottom: 0,top:'90%'}}>
-                <Icons style={styles.cardImage} name='comment' size={50} color="grey" />
-               </View>
+                    <View style={{ position: 'absolute', left: '80%', right: 0, bottom: 0, top: '90%' }}>
+                        <Icons style={styles.cardImage} name='comment' size={50} color="grey" />
+                    </View>
                 </ScrollView>
-                
+
 
                     : null}
                 {this.state.eventVisible &&
                     <Event closeEvent={this.closedAll} />}
                 {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
-                {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />}
+                {/* {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />} */}
+                {this.state.contactVisible && <CheckAnimation  />}
+
 
             </View>
         );
@@ -178,8 +187,8 @@ class Main extends Component {
 };
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1
+    container: {
+        flex: 1
     },
     backPopup: {
         flexDirection: 'row',
@@ -262,8 +271,8 @@ const styles = StyleSheet.create({
         marginTop: 5,
         width: '100%',
         opacity: 0.7,
-        borderBottomWidth:4,
-        borderBottomColor:'grey'
+        borderBottomWidth: 4,
+        borderBottomColor: 'grey'
     },
     name: {
         fontSize: 13,

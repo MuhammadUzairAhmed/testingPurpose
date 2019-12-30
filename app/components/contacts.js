@@ -32,7 +32,7 @@ class Contacts extends Component{
   }
   closed = () => {
     this.props.closeEvent(false)
-}
+  }
   renderItem = ({item}) => {
     return (
       <TouchableOpacity>
