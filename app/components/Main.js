@@ -39,10 +39,16 @@ class Main extends Component {
             eventVisible: false,
             profileVisible: false,
             contactVisible: false,
+            defaultColor: 'white',
+            selectedColor: '#53ADAB',
+            defaultbackColor: '#53ADAB',
+            selectedBackColor: 'white',
+            defaultFont: 'normal',
+            selectedFont: 'bold',
             data: [
                 { id: 1, title: "profile", name: 'user', color: "#FF4500", image: "https://img.icons8.com/color/70/000000/name.png" },
                 { id: 2, title: "Home", name: 'home', color: "#87CEEB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
-                { id: 3, title: "event", name: 'table', color: "#4682B4", image: "https://img.icons8.com/color/70/000000/two-hearts.png" },
+                { id: 3, title: "Events", name: 'table', color: "#4682B4", image: "https://img.icons8.com/color/70/000000/two-hearts.png" },
                 { id: 4, title: "Family", name: 'carryout', color: "#6A5ACD", image: "https://img.icons8.com/color/70/000000/family.png" },
                 { id: 5, title: "Friends", name: 'team', color: "#FF69B4", image: "https://img.icons8.com/color/70/000000/groups.png" },
                 { id: 6, title: "message", name: 'mail', color: "#00BFFF", image: "https://img.icons8.com/color/70/000000/classroom.png" },
@@ -54,6 +60,7 @@ class Main extends Component {
     }
     getData = (item) => {
         if (item.name == 'table') {
+           
             this.setState({ eventVisible: true, contactVisible: false })
         } else if (item.name == 'contacts') {
             this.setState({ contactVisible: true, eventVisible: false })
@@ -73,7 +80,7 @@ class Main extends Component {
         this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed, contactVisible: closed })
     }
     render() {
-       
+        const { defaultColor, selectedColor, defaultbackColor, selectedBackColor, defaultFont, selectedFont } = this.state
         const buttons = ['Invite', 'Chat', 'Followers']
         const { selectedIndex } = this.state
         const { data, modalName, modalImage } = this.state
@@ -126,12 +133,13 @@ class Main extends Component {
                             <View style={styles.bodyOverlay}>
                                 <View style={{ backgroundColor: 'white' }}>
 
-                                    <View style={styles.headerContent}>
+                                    <View style={{display:'flex',flexDirection:'column',backgroundColor:'#53ADAB'}}>
+                                       <View style={styles.headerContent}>
                                         <View>
-                                        <Icon name='bars' size={18} color="grey" onPress={()=>this.props.navigation.toggleDrawer()} />
+                                        <Icon name='bars' size={18} color="white" onPress={()=>this.props.navigation.toggleDrawer()} />
                                         </View>
                                         <View>
-                                            <Text style={{ fontSize: 22, color: 'grey' }} onPress={()=>this.props.navigation.navigate('About', {
+                                            <Text style={{ fontSize: 22, color: 'white' }} onPress={()=>this.props.navigation.navigate('About', {
                                                     itemId: 86,
                                                     otherParam: 'anything you want here',
                                                     })}>Discovery App</Text>
@@ -142,22 +150,26 @@ class Main extends Component {
                                             </Text>
                                             <Icon name='poweroff' size={15} color="red" />
                                         </View>
-
+                                        </View>
+                                        <View style={styles.headerChild2}>
+                                            <View>
+                                                <Text style={{ ...styles.subHeaderchildsCommon, ...styles.subHeaderchilds21, color: `${defaultColor}`, backgroundColor: `${defaultbackColor}`, fontWeight: `${defaultFont}` }}>Invite</Text>
+                                            </View>
+                                            <View >
+                                                <Text style={{ ...styles.subHeaderchildsCommon, ...styles.subHeaderchilds22, color: `${defaultColor}`, backgroundColor: `${defaultbackColor}`, fontWeight: `${defaultFont}` }}>Chat</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={{ ...styles.subHeaderchildsCommon, ...styles.subHeaderchilds23, color: `${selectedColor}`, backgroundColor: `${selectedBackColor}`, fontWeight: `${selectedFont}` }}>Followers</Text>
+                                            </View>
+                                        </View>
                                     </View>
 
-                                    <ButtonGroup
-                                        onPress={this.updateIndex}
-                                        selectedIndex={selectedIndex}
-                                        buttons={buttons}
-                                        containerBorderRadius={0}
-                                        textStyle={{ color: 'white' }}
-                                        containerStyle={{ padding: 0, margin: 0, height: 30, width: '95%', backgroundColor: 'grey' }}
-                                    />
+                                   
                                 </View>
                                 <View style={styles.menuItems}>
                                     <View style={styles.menuList}>
                                         {data.map((item) => {
-                                            return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => this.getData(item)}>
+                                            return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => item.title== 'profile' ? this.getData(item) : this.props.navigation.navigate(`${item.title}`)}>
                                                 <Icon style={styles.cardImage} name={item.name} size={45} color="white" />
                                             </TouchableOpacity>
                                         })}
@@ -169,17 +181,18 @@ class Main extends Component {
                     </View>
                 </ImageBackground>
                     <View style={{ position: 'absolute', left: '80%', right: 0, bottom: 0, top: '90%' }}>
-                        <Icons style={styles.cardImage} name='comment' size={50} color="grey" />
+                        <Icons style={styles.cardImage} name='comment' size={50} color="#53ADAB" />
                     </View>
                 </ScrollView>
 
 
                     : null}
-                {this.state.eventVisible &&
-                    <Event closeEvent={this.closedAll} />}
+                {/* {this.state.eventVisible &&
+                    <Event closeEvent={this.closedAll} />} */}
                 {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
-                {/* {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />} */}
-                {this.state.contactVisible && <LatestEvent  />}
+                {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />}
+                {/* {this.state.eventVisible &&
+                    <LatestEvent />} */}
 
 
             </View>
@@ -188,6 +201,29 @@ class Main extends Component {
 };
 
 const styles = StyleSheet.create({
+    headerChild2:{
+        display:'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingBottom: 8
+    },
+    subHeaderchildsCommon: {
+        borderWidth: 1,
+        borderColor: 'white',
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 6,
+        paddingBottom: 6
+    },
+    subHeaderchilds21: {
+        borderTopLeftRadius: 6,
+        borderBottomLeftRadius: 6
+    },
+    subHeaderchilds22: {},
+    subHeaderchilds23: {
+        borderTopRightRadius: 6,
+        borderBottomRightRadius: 6,
+    },
     container: {
         flex: 1
     },
@@ -269,15 +305,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 15,
         alignItems: 'center',
-        marginTop: 5,
+        marginTop: 0,
         width: '100%',
-        opacity: 0.7,
-        borderBottomWidth: 4,
-        borderBottomColor: 'grey'
+        backgroundColor:'#53ADAB',
+        // opacity: 0.7,
+        // borderBottomWidth: 2,
+        // borderBottomColor: 'grey'
     },
     name: {
         fontSize: 13,
-        color: "black",
+        color: "white",
         fontWeight: '600',
         marginRight: 16
     },

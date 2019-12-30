@@ -138,8 +138,8 @@ class LatestEvent extends Component {
                     <View style={styles.headerChild1}>
                         <View style={styles.headerSubChild1}>
                         <Icon onPress={this.closed}  name='arrowleft' size={20} color="white" onPress={()=>this.props.navigation.navigate('Home')} />
-                            <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Feed</Text>
-                            <Text style={{ ...styles.subHeaderchilds }}>Select</Text>
+                            <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Events</Text>
+                            <Text style={{ ...styles.subHeaderchilds }}>#{this.state.eventData.length} Events</Text>
                         </View>
                     </View>
                     <View style={styles.headerChild2}>

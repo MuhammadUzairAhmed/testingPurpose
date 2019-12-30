@@ -104,7 +104,7 @@ const bottomNavigator = createBottomTabNavigator(
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: Main,
-    About: AboutScreen,
+    // About: AboutScreen,
     Events: LatesEvents
   }
   ,
@@ -113,8 +113,8 @@ const DrawerNavigator = createDrawerNavigator(
     drawerBackgroundColor: 'rgba(255,255,255,.9)',
     overlayColor: 'rgba(47,163,218, .4)',
     contentOptions: {
-      activeTintColor: '#fff',
-      activeBackgroundColor: 'grey',
+      activeTintColor: 'white',
+      activeBackgroundColor: '#53ADAB',
     },
   }
 );
