@@ -22,6 +22,7 @@ import Event from './event'
 import Profile from './profile';
 import Contacts from './contacts'
 import CheckAnimation from './checkAnimation'
+import LatestEvent from './latestEvents';
 
 class Main extends Component {
     static navigationOptions = {
@@ -178,7 +179,7 @@ class Main extends Component {
                     <Event closeEvent={this.closedAll} />}
                 {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
                 {/* {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />} */}
-                {this.state.contactVisible && <CheckAnimation  />}
+                {this.state.contactVisible && <LatestEvent  />}
 
 
             </View>
