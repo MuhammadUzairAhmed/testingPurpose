@@ -69,7 +69,7 @@ class LatestProfile extends Component{
                         <View style={styles.followMe}>
                         <Button
                             title="Follow me"
-                            style={{backgroundColor:'#53ADAB',color:'white', borderRadius:10}}
+                            color="#53ADAB"
                            />
                         </View>
                         </ScrollView>
