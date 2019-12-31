@@ -47,15 +47,15 @@ class Main extends Component {
             defaultFont: 'normal',
             selectedFont: 'bold',
             data: [
-                { id: 1, title: "profile", name: 'user', color: "#FF4500", image: "https://img.icons8.com/color/70/000000/name.png" },
-                { id: 2, title: "Home", name: 'home', color: "#87CEEB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
-                { id: 3, title: "Events", name: 'table', color: "#4682B4", image: "https://img.icons8.com/color/70/000000/two-hearts.png" },
-                { id: 4, title: "Family", name: 'carryout', color: "#6A5ACD", image: "https://img.icons8.com/color/70/000000/family.png" },
-                { id: 5, title: "Friends", name: 'team', color: "#FF69B4", image: "https://img.icons8.com/color/70/000000/groups.png" },
-                { id: 6, title: "message", name: 'mail', color: "#00BFFF", image: "https://img.icons8.com/color/70/000000/classroom.png" },
-                { id: 7, title: "contacts", name: 'contacts', color: "#00FFFF", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
-                { id: 8, title: "idcard", name: 'idcard', color: "#20B2AA", image: "https://img.icons8.com/dusk/70/000000/globe-earth.png" },
-                { id: 9, title: "slack", name: 'slack', color: "#008080", image: "https://img.icons8.com/color/70/000000/basketball.png" },
+                { id: 1, title: "profile", name: 'user', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/name.png" },
+                { id: 2, title: "Home", name: 'home', color: "#53ADAB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
+                { id: 3, title: "Events", name: 'table', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/two-hearts.png" },
+                { id: 4, title: "Family", name: 'carryout', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/family.png" },
+                { id: 5, title: "Friends", name: 'team', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/groups.png" },
+                { id: 6, title: "message", name: 'mail', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/classroom.png" },
+                { id: 7, title: "contacts", name: 'contacts', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
+                { id: 8, title: "idcard", name: 'idcard', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/globe-earth.png" },
+                { id: 9, title: "slack", name: 'slack', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/basketball.png" },
             ]
         };
     }

@@ -1,21 +1,25 @@
-
-import React, {Component} from 'react';
+import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Image,
-    Alert,
-    ScrollView,
-    FlatList
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-class Contacts extends Component{
-   
+import { Divider } from 'react-native-elements'
+import Icons from 'react-native-vector-icons/MaterialIcons';
+
+export default class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
+      numColumns: 2,
+      data: [
+        { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
+      ],
       calls: [
         {id:1,  name: "Mark Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"},
         {id:2,  name: "Clark Man",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar6.png"} ,
@@ -30,106 +34,127 @@ class Contacts extends Component{
       ]
     };
   }
-  closed = () => {
-    this.props.closeEvent(false)
-  }
-  renderItem = ({item}) => {
-    return (
-      <TouchableOpacity>
-        <View style={styles.row}>
-          <Image source={{ uri: item.image }} style={styles.pic} />
-          <View>
-            <View style={styles.nameContainer}>
-              <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-              <Text style={styles.mblTxt}>Mobile</Text>
-            </View>
-            <View style={styles.msgContainer}>
-              <Text style={[styles.msgTxt,{color:item.status == 'active'?'#008B8B':'red'}]}>{item.status}</Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  }
 
-  render() {
-    return(
-      <View style={{flex:1}} >
-        <View style={{flex:1}}>
-        <View style={styles.headerContent}>
-          <View>
-            <Icon style={{flex:1}} onPress={this.closed} style={{ position: 'relative', marginLeft: 15, marginTop: 20 }} name='arrowleft' size={20} color="black" />
-          </View>
-          <View>
-              <Text style={{ fontSize: 22, color: 'grey',paddingRight:10 }}>Discovery App</Text>
-            </View>
-          </View>
-         </View>
-        <View style={{flex:11}}>
-        <FlatList 
-          extraData={this.state}
-          data={this.state.calls}
-          keyExtractor = {(item) => {
-            return item.id;
-          }}
-          renderItem={this.renderItem}/>
-          </View>
+  renderItem = ({ item, index }) => {
+    if (item.empty === true) {
+      return <View style={[styles.item, styles.itemInvisible]} />;
+    }
+    return (
+      <View style={[styles.item, { height: 150 }]}>
+        <View style={{backgroundColor:'rgba(47,163,218, .4)',borderRadius:20}}>
+          <ImageBackground source={require('./../assets/img4.jpg')} style={[styles.item, { height:150}]}>
+          <Text style={styles.itemText}>{item.name}</Text>
+          </ImageBackground>
+        </View>
       </View>
     );
   }
+
+  formatRow = (data, numColumns) => {
+    const numberOfFullRows = Math.floor(data.length / numColumns);
+    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+      data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+      numberOfElementsLastRow++;
+    }
+    return data;
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        {/* flex 1 */}
+        <View style={styles.header}>
+          <View style={styles.headerChild1}>
+            <View style={styles.headerSubChild1}>
+              <Icon onPress={this.closed} name='arrowleft' size={20} color="white" onPress={() => this.props.navigation.navigate('Home')} />
+              <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Contacts</Text>
+              <Text style={{ ...styles.subHeaderchilds }}></Text>
+            </View>
+          </View>
+        </View>
+        <View style={{flex:2,flexDirection:'row',justifyContent:'space-around'}}>
+<View style={{width:'20%'}}><Icon name="contacts" size={70} color="black" /></View>
+<View style={{width:'80%'}}><Text style={{textAlign:'center'}}>Experienced Junior Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in PHP, React Native, Databases, Bootstrap.</Text></View>
+        </View>
+        <View style={{ padding: 5}}>
+                                    <Divider style={{ backgroundColor: 'grey' }} />
+                                </View>
+        <View style={{ flex: 9 }}>
+          <FlatList
+            data={this.formatRow(this.state.calls, this.state.numColumns)}
+            style={styles.container}
+            renderItem={this.renderItem}
+            numColumns={this.state.numColumns} />
+        </View>
+      </View>
+    );
+
+  }
 }
-export default Contacts
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#DCDCDC',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    padding: 10,
+  container: {
+    flex: 1,
+    // marginVertical: 5,
   },
-  pic: {
-    borderRadius: 30,
-    width: 60,
-    height: 60,
+  // header style
+  header: {
+    flex: 1,
+    backgroundColor: '#53ADAB'
   },
-  nameContainer: {
+  headerChild1: {
+    flex: 2,
+  },
+  headerChild2: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'center',
+    paddingBottom: 8
+  },
+  headerSubChild1: {
+    display: 'flex',
     justifyContent: 'space-between',
-    width: 280,
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
-    width:170,
-  },
-  mblTxt: {
-    fontWeight: '200',
-    color: '#777',
-    fontSize: 13,
-  },
-  msgContainer: {
     flexDirection: 'row',
+    padding: 10,
+    marginTop: 10
+  },
+  subHeaderchilds: {
+    color: 'white',
+    fontSize: 18
+  },
+  subHeaderchildsCommon: {
+    borderWidth: 1,
+    borderColor: 'white',
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 6,
+    paddingBottom: 6
+  },
+  subHeaderchilds21: {
+    borderTopLeftRadius: 6,
+    borderBottomLeftRadius: 6
+  },
+  subHeaderchilds22: {},
+  subHeaderchilds23: {
+    borderTopRightRadius: 6,
+    borderBottomRightRadius: 6,
+  },
+
+  item: {
+    backgroundColor: 'white',
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 15,
+    borderRadius: 20
   },
-  msgTxt: {
-    fontWeight: '400',
-    fontSize: 12,
-    marginLeft: 15,
+  itemInvisible: {
+    backgroundColor: 'transparent',
   },
-  
-    headerContent: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-       alignItems: 'center',
-       paddingBottom:5,
-        width: '100%',
-        opacity: 0.7,
-        borderBottomWidth:4,
-        borderBottomColor:'grey'
-    }
+  itemText: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
 }); 
