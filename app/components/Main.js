@@ -23,6 +23,7 @@ import Profile from './profile';
 import Contacts from './contacts'
 import CheckAnimation from './checkAnimation'
 import LatestEvent from './latestEvents';
+import LatestProfile from './latestProfile';
 
 class Main extends Component {
     static navigationOptions = {
@@ -70,11 +71,16 @@ class Main extends Component {
         }
     }
     setModalVisible(visible) {
-        this.setState({ modalVisible: visible }, () => {
-            if (this.state.modalName == 'profile') {
-                this.setState({ eventVisible: false, profileVisible: true, contactVisible: false })
-            }
-        });
+        // this.setState({ modalVisible: visible }, () => {
+        //     if (this.state.modalName == 'profile') {
+        //         this.setState({ eventVisible: false, profileVisible: true, contactVisible: false },()=>{
+        //             this.props.navigation.navigate('Profile')
+        //         })
+        //     }
+        // });
+        this.props.navigation.navigate('Profile')
+        this.closedAll(false)
+        
     }
     closedAll = (closed) => {
         this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed, contactVisible: closed })
@@ -189,8 +195,9 @@ class Main extends Component {
                     : null}
                 {/* {this.state.eventVisible &&
                     <Event closeEvent={this.closedAll} />} */}
-                {this.state.profileVisible && <Profile closeEvent={this.closedAll} />}
-                {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />}
+                {/* {this.state.profileVisible && <LatestProfile />} */}
+                {/* {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />} */}
+                {this.state.contactVisible && <LatestProfile />}
                 {/* {this.state.eventVisible &&
                     <LatestEvent />} */}
 

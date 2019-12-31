@@ -14,6 +14,7 @@ import Eventlist from './app/components/listOfEvents';
 import LatesEvents from './app/components/latestEvents'
 import { createDrawerNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/AntDesign';
+import LatestProfile from './app/components/latestProfile';
 // class App extends Component{
 //   render(){
 //     return(
@@ -105,11 +106,12 @@ const DrawerNavigator = createDrawerNavigator(
   {
     Home: Main,
     // About: AboutScreen,
-    Events: LatesEvents
+    Events: LatesEvents,
+    Profile: LatestProfile
   }
   ,
   {
-    hideStatusBar: false,
+
     drawerBackgroundColor: 'rgba(255,255,255,.9)',
     overlayColor: 'rgba(47,163,218, .4)',
     contentOptions: {
