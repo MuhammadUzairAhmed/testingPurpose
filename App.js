@@ -17,6 +17,9 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import LatestProfile from './app/components/latestProfile';
 import LatestHome from './app/components/latesHome' 
 import ContactList from './app/components/contacts'
+import Notifications from './app/components/notifications';
+import NotificationsPosts from './app/components/notificationPost'
+
 // class App extends Component{
 //   render(){
 //     return(
@@ -110,7 +113,9 @@ const DrawerNavigator = createDrawerNavigator(
     // About: AboutScreen,
     Events: LatesEvents,
     Profile: LatestProfile,
-    Contact:ContactList
+    Contact:ContactList,
+    Notification: Notifications,
+    // Notipost: NotificationsPosts
   }
   ,
   {

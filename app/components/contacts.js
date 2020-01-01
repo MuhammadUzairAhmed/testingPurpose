@@ -11,8 +11,11 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Divider } from 'react-native-elements'
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
-export default class App extends React.Component {
-
+export default class Contacts extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Contacts',
+    drawerIcon:()=>(<Icon name='contacts' size={18} color="black" />)
+   };
   constructor(props) {
     super(props);
     this.state = {
