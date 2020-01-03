@@ -24,32 +24,35 @@ export default class Contacts extends React.Component {
         { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
       ],
       calls: [
-        {id:1,  name: "Mark Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"},
-        {id:2,  name: "Clark Man",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar6.png"} ,
-        {id:3,  name: "Jaden Boor",  status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar5.png"} ,
-        {id:4,  name: "Srick Tree",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png"} ,
-        {id:5,  name: "Erick Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar3.png"} ,
-        {id:6,  name: "Francis Doe", status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar2.png"} ,
-        {id:8,  name: "Matilde Doe", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png"} ,
-        {id:9,  name: "John Doe",    status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar4.png"} ,
-        {id:10, name: "Fermod Doe",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png"} ,
-        {id:11, name: "Danny Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png"},
+        {id:1,  name: "Mark Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png", email:'uzair@gmail.com'},
+        {id:2,  name: "Clark Man",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar6.png", email:'joeee@gmail.com'} ,
+        // {id:3,  name: "Jaden Boor",  status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar5.png"} ,
+        // {id:4,  name: "Srick Tree",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png", email:'uzair@gmail.com'} ,
+        // {id:5,  name: "Erick Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar3.png", email:'uzair@gmail.com'} ,
+        // {id:6,  name: "Francis Doe", status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar2.png", email:'joeee@gmail.com'} ,
+        // {id:8,  name: "Matilde Doe", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png", email:'joeee@gmail.com'} ,
+        // {id:9,  name: "John Doe",    status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar4.png", email:'joeee@gmail.com'} ,
+        // {id:10, name: "Fermod Doe",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png", email:'joeee@gmail.com'} ,
+        // {id:11, name: "Danny Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png", email:'joeee@gmail.com'},
       ]
     };
   }
 
   renderItem = ({ item, index }) => {
+    const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
+        const password = navigation.getParam('password', 'some default value');
     if (item.empty === true) {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
-    return (
+    return (item.email == email ? 
       <View style={[styles.item, { height: 150 }]}>
         <View style={{backgroundColor:'rgba(47,163,218, .4)',borderRadius:20}}>
           <ImageBackground source={require('./../assets/img4.jpg')} style={[styles.item, { height:150}]}>
           <Text style={styles.itemText}>{item.name}</Text>
           </ImageBackground>
         </View>
-      </View>
+      </View>: null
     );
   }
 
@@ -64,6 +67,11 @@ export default class Contacts extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
+        const password = navigation.getParam('password', 'some default value');
+        console.log(email,'contactss')
+        console.log(password)
     return (
       <View style={{ flex: 1 }}>
         {/* flex 1 */}

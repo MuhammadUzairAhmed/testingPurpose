@@ -14,6 +14,7 @@ import {
     TouchableHighlight,
     Modal
 } from 'react-native';
+import Video from 'react-native-video';
 import { Card, Button, Divider, SearchBar, ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome'
@@ -28,9 +29,9 @@ import LatestProfile from './latestProfile';
 class Main extends Component {
     static navigationOptions = {
         drawerLabel: 'Home',
-        drawerIcon:()=>(<Icon name='home' size={18} color="black" />)
-        
-      };
+        drawerIcon: () => (<Icon name='home' size={18} color="black" />)
+
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -46,6 +47,17 @@ class Main extends Component {
             selectedBackColor: 'white',
             defaultFont: 'normal',
             selectedFont: 'bold',
+            repeat: true,
+            rate: 1,
+            volume: 0,
+            muted: false,
+            resizeMode: 'cover',
+            duration: 0.0,
+            curretnTime: 0.0,
+            paused: true,
+            rateText: '1.0',
+            pausedText: 'Play',
+            hideControls: false,
             data: [
                 { id: 1, title: "profile", name: 'user', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/name.png" },
                 { id: 2, title: "Home", name: 'home', color: "#53ADAB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
@@ -53,7 +65,7 @@ class Main extends Component {
                 { id: 4, title: "Notification", name: 'bells', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/family.png" },
                 { id: 5, title: "Friends", name: 'team', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/groups.png" },
                 { id: 6, title: "message", name: 'mail', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/classroom.png" },
-                { id: 7, title: "contacts", name: 'contacts', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
+                { id: 7, title: "Contact", name: 'contacts', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
                 { id: 8, title: "idcard", name: 'idcard', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/globe-earth.png" },
                 { id: 9, title: "slack", name: 'slack', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/basketball.png" },
             ]
@@ -61,7 +73,7 @@ class Main extends Component {
     }
     getData = (item) => {
         if (item.name == 'table') {
-           
+
             this.setState({ eventVisible: true, contactVisible: false })
         } else if (item.name == 'contacts') {
             this.setState({ contactVisible: true, eventVisible: false })
@@ -71,27 +83,38 @@ class Main extends Component {
         }
     }
     setModalVisible(visible) {
-        // this.setState({ modalVisible: visible }, () => {
-        //     if (this.state.modalName == 'profile') {
-        //         this.setState({ eventVisible: false, profileVisible: true, contactVisible: false },()=>{
-        //             this.props.navigation.navigate('Profile')
-        //         })
-        //     }
-        // });
-        this.props.navigation.navigate('Profile')
+        const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
+        var name;var img ;
+        if(email == 'uzair@gmail.com'){
+            name = 'M Uzair'
+            img = require('./../assets/donnieyen.jpg')
+        }else{
+            name = 'Joanna'
+            img = require('./../assets/nightFl.jpg')
+        }
+        this.props.navigation.navigate('Profile',{name,img})
         this.closedAll(false)
-        
+
     }
     closedAll = (closed) => {
         this.setState({ profileVisible: closed, eventVisible: closed, modalVisible: closed, contactVisible: closed })
     }
+    greatJob=()=>{
+        this.props.navigation.navigate('Login')
+    }
     render() {
+        const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
+        const password = navigation.getParam('password', 'some default value');
+
         const { defaultColor, selectedColor, defaultbackColor, selectedBackColor, defaultFont, selectedFont } = this.state
         const buttons = ['Invite', 'Chat', 'Followers']
         const { selectedIndex } = this.state
         const { data, modalName, modalImage } = this.state
         return (
             <View style={styles.container} >
+
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -109,20 +132,24 @@ class Main extends Component {
 
                                 <View style={{ alignItems: 'center', marginTop: '12%' }}>
                                     <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: '8%', color: 'grey' }}>Add a profile {"\n"} Picture</Text>
-                                    <Image style={styles.image} source={require('./../assets/donnieyen.jpg')} />
+                                    {email == 'uzair@gmail.com'?
+                                      <Image style={styles.image} source={require('./../assets/donnieyen.jpg')} />:
+                                      <Image style={styles.image} source={require('./../assets/nightFl.jpg')} />
+                                    }
+                                  
                                 </View>
                                 <View style={{ marginTop: '20%' }}>
                                     <Button
                                         // onPress={() => { this.setModalVisible(false) }}
-                                        buttonStyle={{ backgroundColor: 'grey', borderRadius: 20, margin: 5 }}
+                                        buttonStyle={{ backgroundColor: '#53ADAB', borderRadius: 20, margin: 5 }}
                                         title='Choose a photo' />
                                     <Button
                                         // onPress={() => { this.setModalVisible(false) }}
-                                        buttonStyle={{ backgroundColor: 'grey', borderRadius: 20, margin: 5 }}
+                                        buttonStyle={{ backgroundColor: '#53ADAB', borderRadius: 20, margin: 5 }}
                                         title='Take a photo' />
                                     <Button
                                         onPress={() => { this.setModalVisible(false) }}
-                                        buttonStyle={{ backgroundColor: 'grey', borderRadius: 20, margin: 5 }}
+                                        buttonStyle={{ backgroundColor: '#53ADAB', borderRadius: 20, margin: 5 }}
                                         title='Goto Description' />
                                 </View>
                             </View>
@@ -135,27 +162,25 @@ class Main extends Component {
 
                     <View>
                         <View style={{ width: '100%', height: '100%' }}>
-
                             <View style={styles.bodyOverlay}>
                                 <View style={{ backgroundColor: 'white' }}>
-
-                                    <View style={{display:'flex',flexDirection:'column',backgroundColor:'#53ADAB'}}>
-                                       <View style={styles.headerContent}>
-                                        <View>
-                                        <Icon name='bars' size={18} color="white" onPress={()=>this.props.navigation.toggleDrawer()} />
-                                        </View>
-                                        <View>
-                                            <Text style={{ fontSize: 22, color: 'white' }} onPress={()=>this.props.navigation.navigate('About', {
+                                    <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#53ADAB' }}>
+                                        <View style={styles.headerContent}>
+                                            <View>
+                                                <Icon name='bars' size={18} color="white" onPress={() => this.props.navigation.toggleDrawer()} />
+                                            </View>
+                                            <View>
+                                                <Text style={{ fontSize: 22, color: 'white' }} onPress={() => this.props.navigation.navigate('About', {
                                                     itemId: 86,
                                                     otherParam: 'anything you want here',
-                                                    })}>Discovery App</Text>
-                                        </View>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <Text style={styles.name}>
-                                                Welcome, John
+                                                })}>Discovery App</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.name}>
+                                                    Welcome, John
                                             </Text>
-                                            <Icon name='poweroff' size={15} color="red" />
-                                        </View>
+                                                <Icon onPress={this.greatJob} name='poweroff' size={15} color="red" />
+                                            </View>
                                         </View>
                                         <View style={styles.headerChild2}>
                                             <View>
@@ -169,13 +194,13 @@ class Main extends Component {
                                             </View>
                                         </View>
                                     </View>
-
-                                   
                                 </View>
                                 <View style={styles.menuItems}>
                                     <View style={styles.menuList}>
                                         {data.map((item) => {
-                                            return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => item.title== 'profile' ? this.getData(item) : this.props.navigation.navigate(`${item.title}`)}>
+                                            return <TouchableOpacity key={item.id} style={[styles.card, { backgroundColor: `${item.color}`, margin: 10 }]} onPress={() => item.title == 'profile' ? this.getData(item) : this.props.navigation.navigate(`${item.title}`, {
+                                                email, password
+                                            })}>
                                                 <Icon style={styles.cardImage} name={item.name} size={45} color="white" />
                                             </TouchableOpacity>
                                         })}
@@ -186,18 +211,38 @@ class Main extends Component {
 
                     </View>
                 </ImageBackground>
-                    <View style={{ position: 'absolute', left: '80%', right: 0, bottom: 0, top: '90%' }}>
-                        <Icons style={styles.cardImage} name='comment' size={50} color="#53ADAB" />
+                    <View>
+
                     </View>
+                    {/* <Video source={require('./../assets/Narcos-S03-Ep10.mp4')}   
+                    ref={(ref) => {
+                        this.player = ref
+                    }}                                      
+                    // onBuffer={this.onBuffer}               
+                    // onError={this.videoError}             
+                    style={{width:'100%',height:200,marginTop:10,backgroundColor:'red'}} /> */}
+
                 </ScrollView>
 
 
                     : null}
+                <Video source={require('./../assets/sampleVideo.mp4')}
+                    ref={(ref) => {
+                        this.player = ref
+                    }}
+                    resizeMode={this.state.resizeMode}
+                    volume={this.state.volume}
+                    muted={this.state.muted}
+                    // paused={this.state.paused}
+                    repeat={this.state.repeat}
+                    rate={this.state.rate}
+                    style={{ width: '100%', height: 150, marginTop: 10 }} />
+                <Icons style={styles.chatIcon} name='comment' size={50} color="#53ADAB" />
                 {/* {this.state.eventVisible &&
                     <Event closeEvent={this.closedAll} />} */}
                 {/* {this.state.profileVisible && <LatestProfile />} */}
                 {/* {this.state.contactVisible && <Contacts closeEvent={this.closedAll} />} */}
-                {this.state.contactVisible && <LatestProfile />}
+                {/* {this.state.contactVisible && <LatestProfile />} */}
                 {/* {this.state.eventVisible &&
                     <LatestEvent />} */}
 
@@ -208,8 +253,8 @@ class Main extends Component {
 };
 
 const styles = StyleSheet.create({
-    headerChild2:{
-        display:'flex',
+    headerChild2: {
+        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         paddingBottom: 8
@@ -236,7 +281,7 @@ const styles = StyleSheet.create({
     },
     backPopup: {
         flexDirection: 'row',
-        backgroundColor: 'grey',
+        backgroundColor: '#53ADAB',
         padding: 2,
         margin: 2
     },
@@ -263,6 +308,9 @@ const styles = StyleSheet.create({
     cardImage: {
         alignSelf: 'center'
     },
+    chatIcon: {
+        alignSelf: 'flex-end'
+    },
     texting: {
         paddingLeft: 10
     },
@@ -282,16 +330,16 @@ const styles = StyleSheet.create({
 
         flexDirection: 'column',
         padding: 0,
-        marginBottom: 20,
-        marginLeft: 10,
+
+        marginLeft: 5,
 
     },
     menuList: {
         flexDirection: "row",
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        marginTop: 20,
-        marginBottom: 10
+        // marginTop: 20,
+        // marginBottom: 10
     },
     overlayContainer: {
         backgroundColor: 'rgba(47,163,218, .4)',
@@ -314,7 +362,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 0,
         width: '100%',
-        backgroundColor:'#53ADAB',
+        backgroundColor: '#53ADAB',
         // opacity: 0.7,
         // borderBottomWidth: 2,
         // borderBottomColor: 'grey'

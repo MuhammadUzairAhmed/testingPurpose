@@ -23,15 +23,15 @@ export default class Notifications extends Component {
             itemImage:'',
             otherParam:'',
             data: [
-                { id: 1, name: 'alex', title: "Lorem ipsum dolor", time: "1 days a go", image: "https://lorempixel.com/400/200/nature/6/" },
-                { id: 2, name: 'alexander', title: "Sit amet, consectetuer", time: "2 minutes a go", image: "https://lorempixel.com/400/200/nature/5/" },
-                { id: 3, name: 'john', title: "Dipiscing elit. Aenean ", time: "3 hour a go", image: "https://lorempixel.com/400/200/nature/4/" },
-                { id: 4, name: 'whick', title: "Commodo ligula eget dolor.", time: "4 months a go", image: "https://lorempixel.com/400/200/nature/6/" },
-                { id: 5, name: 'rambo', title: "Aenean massa. Cum sociis", time: "5 weeks a go", image: "https://lorempixel.com/400/200/sports/1/" },
-                { id: 6, name: 'johnethen', title: "Natoque penatibus et magnis", time: "6 year a go", image: "https://lorempixel.com/400/200/nature/8/" },
-                { id: 7, name: 'Doe', title: "Dis parturient montes, nascetur", time: "7 minutes a go", image: "https://lorempixel.com/400/200/nature/1/" },
-                { id: 8, name: 'walter white', title: "Ridiculus mus. Donec quam", time: "8 days a go", image: "https://lorempixel.com/400/200/nature/3/" },
-                { id: 9, name: 'flash', title: "Felis, ultricies nec, pellentesque", time: "9 minutes a go", image: "https://lorempixel.com/400/200/nature/4/" },
+                { id: 1, name: 'alex', title: "Lorem ipsum dolor", time: "1 days a go", image: "https://lorempixel.com/400/200/nature/6/", email:'uzair@gmail.com' },
+                { id: 2, name: 'alexander', title: "Sit amet, consectetuer", time: "2 minutes a go", image: "https://lorempixel.com/400/200/nature/5/", email:'joeee@gmail.com' },
+                { id: 3, name: 'john', title: "Dipiscing elit. Aenean ", time: "3 hour a go", image: "https://lorempixel.com/400/200/nature/4/", email:'uzair@gmail.com' },
+                { id: 4, name: 'whick', title: "Commodo ligula eget dolor.", time: "4 months a go", image: "https://lorempixel.com/400/200/nature/6/", email:'joeee@gmail.com' },
+                { id: 5, name: 'rambo', title: "Aenean massa. Cum sociis", time: "5 weeks a go", image: "https://lorempixel.com/400/200/sports/1/", email:'joeee@gmail.com' },
+                { id: 6, name: 'johnethen', title: "Natoque penatibus et magnis", time: "6 year a go", image: "https://lorempixel.com/400/200/nature/8/", email:'joeee@gmail.com' },
+                { id: 7, name: 'Doe', title: "Dis parturient montes, nascetur", time: "7 minutes a go", image: "https://lorempixel.com/400/200/nature/1/", email:'joeee@gmail.com' },
+                { id: 8, name: 'walter white', title: "Ridiculus mus. Donec quam", time: "8 days a go", image: "https://lorempixel.com/400/200/nature/3/", email:'joeee@gmail.com' },
+                { id: 9, name: 'flash', title: "Felis, ultricies nec, pellentesque", time: "9 minutes a go", image: "https://lorempixel.com/400/200/nature/4/", email:'joeee@gmail.com' },
             ]
         };
     }
@@ -46,6 +46,11 @@ export default class Notifications extends Component {
         this.setState({display:value})
     }
     render() {
+        const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
+        const password = navigation.getParam('password', 'some default value');
+        console.log(email,'notifications')
+        console.log(password)
         return (
             this.state.display ? <View style={styles.container}>
                 <View style={styles.header}>
@@ -70,7 +75,7 @@ export default class Notifications extends Component {
                         }}
                         renderItem={(post) => {
                             const item = post.item;
-                            return (
+                            return (item.email == email ?
                                 <TouchableOpacity onPress={() => {this.setProperties(item)}}>
                                     <View style={styles.card}>
 
@@ -84,6 +89,7 @@ export default class Notifications extends Component {
                                         </View>
                                     </View>
                                 </TouchableOpacity>
+                                : null
                             )
                         }} />
                 </View>

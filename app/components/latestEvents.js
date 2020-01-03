@@ -22,6 +22,7 @@ class LatestEvent extends Component {
                 {
                     id: 1,
                     profile: require('./../assets/img4.jpg'),
+                    email:'uzair@gmail.com',
                     name: 'M Uzair',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/containersImage.png'),
@@ -41,6 +42,7 @@ class LatestEvent extends Component {
                     id: 2,
                     profile: require('./../assets/img5.jpg'),
                     name: 'Daniyal kukda',
+                    email:'joeee@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img3.png'),
                     title: 'Fighting Event',
@@ -59,6 +61,7 @@ class LatestEvent extends Component {
                     id: 3,
                     profile: require('./../assets/img2.jpg'),
                     name: 'Akhalaq Khan',
+                    email:'uzair@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img4.jpg'),
                     title: 'Fighting Event',
@@ -79,6 +82,7 @@ class LatestEvent extends Component {
                     name: 'Ammar',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img2.jpg'),
+                    email:'uzair@gmail.com',
                     title: 'Fighting Event',
                     timeStart: '04:00 pm',
                     tiemEnd: '02:17 pm',
@@ -94,6 +98,7 @@ class LatestEvent extends Component {
                 {
                     id: 5,
                     profile: require('./../assets/img4.jpg'),
+                    email:'uzair@gmail.com',
                     name: 'M Uzair',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img5.jpg'),
@@ -113,6 +118,7 @@ class LatestEvent extends Component {
                     id: 6,
                     profile: require('./../assets/img3.png'),
                     name: 'Zahir Khan',
+                    email:'uzair@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img2.jpg'),
                     title: 'Fighting Event',
@@ -131,6 +137,8 @@ class LatestEvent extends Component {
         }
     }
     render() {
+        const { navigation } = this.props;
+        const email = navigation.getParam('email', 'No-Email');
         const { defaultColor, selectedColor, defaultbackColor, selectedBackColor, defaultFont, selectedFont } = this.state
         return (
             <View style={styles.container}>
@@ -158,7 +166,7 @@ class LatestEvent extends Component {
                     <FlatList
                         data={this.state.eventData}
                         renderItem={({ item, index }) => {
-                            return <View style={styles.bodyListChild}
+                            return  item.email == email ? <View style={styles.bodyListChild}
                                 key={item.id}>
                                 <View style={styles.subBodyList1}>
                                     <View style={styles.subBodyList1C}>
@@ -219,7 +227,7 @@ class LatestEvent extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </View>
+                            </View>: null
                         }}
                     />
                 </View>

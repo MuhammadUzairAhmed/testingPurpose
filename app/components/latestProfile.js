@@ -15,6 +15,10 @@ class LatestProfile extends Component{
         }
     }
     render(){
+        
+            const { navigation } = this.props;
+            const namee = navigation.getParam('name', 'No-Email');
+            const imgs = navigation.getParam('img', 'some default value');
        return(
             //flex 1
             <View style={styles.container}>
@@ -23,7 +27,7 @@ class LatestProfile extends Component{
                 <View style={styles.header}>
                     <View style={styles.headerChild1}>
                         <View style={styles.headerSubChild1}>
-                        <Icon onPress={this.closed}  name='arrowleft' size={20} color="white" onPress={()=>this.props.navigation.navigate('Home')} />
+                            <Icon onPress={this.closed}  name='arrowleft' size={20} color="white" onPress={()=>this.props.navigation.navigate('Home')} />
                             <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Profile</Text>
                             <Text style={{ ...styles.subHeaderchilds }}></Text>
                         </View>
@@ -34,9 +38,9 @@ class LatestProfile extends Component{
                 <View style={styles.body}>
                    
                    <ScrollView >
-                      <Image style={styles.image} resizeMode="cover" source={require('./../assets/donnieyen.jpg')} />
+                      <Image style={styles.image} resizeMode="cover" source={imgs} />
                         <View style={styles.postion}>
-                            <View><Text style={{fontSize:24,fontWeight:'bold'}}>Muhammad Uzair</Text></View>
+                            <View><Text style={{fontSize:24,fontWeight:'bold'}}>{namee}</Text></View>
                             <View><Text style={{fontSize:19,color:'grey'}}>Software Developer</Text></View>
                             <View><Text style={{fontSize:19,color:'grey'}}>DOB: 14-11-1994</Text></View>
                         </View>

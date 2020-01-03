@@ -12,14 +12,14 @@ import {
 import Main from './app/components/Main'
 import Eventlist from './app/components/listOfEvents';
 import LatesEvents from './app/components/latestEvents'
-import { createDrawerNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import { createDrawerNavigator, createStackNavigator, createSwitchNavigator ,createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/AntDesign';
 import LatestProfile from './app/components/latestProfile';
 import LatestHome from './app/components/latesHome' 
 import ContactList from './app/components/contacts'
 import Notifications from './app/components/notifications';
 import NotificationsPosts from './app/components/notificationPost'
-
+import LoginForm from './app/components/LoginForm'
 // class App extends Component{
 //   render(){
 //     return(
@@ -70,6 +70,8 @@ const singleHomeNavigation = createStackNavigator({
   }
 }
 )
+
+
 const singleAboutNavigation = createStackNavigator({
   About: AboutScreen
 }
@@ -109,6 +111,7 @@ const bottomNavigator = createBottomTabNavigator(
 
 const DrawerNavigator = createDrawerNavigator(
   {
+    Login: LoginForm,
     Home: Main,
     // About: AboutScreen,
     Events: LatesEvents,
@@ -123,11 +126,16 @@ const DrawerNavigator = createDrawerNavigator(
     drawerBackgroundColor: 'rgba(255,255,255,.9)',
     overlayColor: 'rgba(47,163,218, .4)',
     contentOptions: {
-      activeTintColor: 'white',
-      activeBackgroundColor: '#53ADAB',
+      activeTintColor: 'black',
+      activeBackgroundColor: 'white',
     },
   }
 );
+
+const Switching = createSwitchNavigator({
+  Login: LoginForm,
+  Homes: DrawerNavigator
+})
 const AppNavigator = createStackNavigator({
   defaulthome: DrawerNavigator
 }
