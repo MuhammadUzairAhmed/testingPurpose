@@ -20,6 +20,8 @@ import ContactList from './app/components/contacts'
 import Notifications from './app/components/notifications';
 import NotificationsPosts from './app/components/notificationPost'
 import LoginForm from './app/components/LoginForm'
+import IconGrouped from './app/components/iconGrouped'
+import ItemsDragged from './app/components/draggableIcons'
 // class App extends Component{
 //   render(){
 //     return(
@@ -113,11 +115,13 @@ const DrawerNavigator = createDrawerNavigator(
   {
     Login: LoginForm,
     Home: Main,
+    Grouped: IconGrouped,
+    Item:ItemsDragged,
     // About: AboutScreen,
     Events: LatesEvents,
     Profile: LatestProfile,
     Contact:ContactList,
-    Notification: Notifications,
+    Notification: Notifications
     // Notipost: NotificationsPosts
   }
   ,
