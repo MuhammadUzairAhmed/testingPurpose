@@ -1,25 +1,25 @@
-import React,{Component} from 'react'
-import {View,Text,StyleSheet,Image,ScrollView, Button} from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
-class LatestProfile extends Component{
+class LatestProfile extends Component {
     static navigationOptions = {
         drawerLabel: 'Profile',
-        drawerIcon:()=>(<Icon name='profile' size={18} color="black" />)
-       };
+        drawerIcon: () => (<Icon name='profile' size={18} color="black" />)
+    };
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
-    render(){
-        
-            const { navigation } = this.props;
-            const namee = navigation.getParam('name', 'No-Email');
-            const imgs = navigation.getParam('img', 'some default value');
-       return(
+    render() {
+
+        const { navigation } = this.props;
+        const namee = navigation.getParam('name', 'No-Email');
+        const imgs = navigation.getParam('img', 'some default value');
+        return (
             //flex 1
             <View style={styles.container}>
 
@@ -27,7 +27,7 @@ class LatestProfile extends Component{
                 <View style={styles.header}>
                     <View style={styles.headerChild1}>
                         <View style={styles.headerSubChild1}>
-                            <Icon onPress={this.closed}  name='arrowleft' size={20} color="white" onPress={()=>this.props.navigation.navigate('Home')} />
+                            <Icon onPress={this.closed} name='arrowleft' size={20} color="white" onPress={() => this.props.navigation.navigate('Home')} />
                             <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Profile</Text>
                             <Text style={{ ...styles.subHeaderchilds }}></Text>
                         </View>
@@ -36,13 +36,13 @@ class LatestProfile extends Component{
 
                 {/* flex 10 */}
                 <View style={styles.body}>
-                   
-                   <ScrollView >
-                      <Image style={styles.image} resizeMode="cover" source={imgs} />
+
+                    <ScrollView >
+                        <Image style={styles.image} resizeMode="cover" source={imgs} />
                         <View style={styles.postion}>
-                            <View><Text style={{fontSize:24,fontWeight:'bold'}}>{namee}</Text></View>
-                            <View><Text style={{fontSize:19,color:'grey'}}>Software Developer</Text></View>
-                            <View><Text style={{fontSize:19,color:'grey'}}>DOB: 14-11-1994</Text></View>
+                            <View><Text style={{ fontSize: 24, fontWeight: 'bold' }}>{namee}</Text></View>
+                            <View><Text style={{ fontSize: 19, color: 'grey' }}>Software Developer</Text></View>
+                            <View><Text style={{ fontSize: 19, color: 'grey' }}>DOB: 14-11-1994</Text></View>
                         </View>
                         <View style={styles.impActivity}>
                             <View style={styles.impActivityChils}><Text>marital status:</Text><Text>Single</Text></View>
@@ -50,34 +50,34 @@ class LatestProfile extends Component{
                         </View>
                         <View style={styles.interests}>
                             <View>
-                                <View style={styles.interestChild}><Icons  name='photo' size={20} color="white"  /></View>
+                                <View style={styles.interestChild}><Icons name='photo' size={20} color="white" /></View>
                                 <Text>Photos</Text>
                             </View>
                             <View>
-                                <View style={styles.interestChild}><Icons  name='event' size={20} color="white"  /></View>
+                                <View style={styles.interestChild}><Icons name='event' size={20} color="white" /></View>
                                 <Text>Events</Text>
                             </View>
                             <View>
-                                <View style={styles.interestChild}><Icons  name='local-activity' size={20} color="white"  /></View>
+                                <View style={styles.interestChild}><Icons name='local-activity' size={20} color="white" /></View>
                                 <Text>Activities</Text>
                             </View>
                         </View>
                         <View style={styles.about}>
-                            <Text style={{fontSize:24,fontWeight:'bold',textAlign:'center'}}>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>
                                 About Me
                             </Text>
-                            <Text style={{textAlign:'center'}}>
-                            Experienced Junior Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in PHP, React Native, Databases, Bootstrap, and Cascading Style Sheets (CSS).
+                            <Text style={{ textAlign: 'center' }}>
+                                Experienced Junior Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in PHP, React Native, Databases, Bootstrap, and Cascading Style Sheets (CSS).
                             </Text>
                         </View>
                         <View style={styles.followMe}>
-                        <Button
-                            title="Follow me"
-                            color="#53ADAB"
-                           />
+                            <Button
+                                title="46 Followers"
+                                color="#53ADAB"
+                            />
                         </View>
-                        </ScrollView>
-                   
+                    </ScrollView>
+
                 </View>
 
             </View>
@@ -87,8 +87,8 @@ class LatestProfile extends Component{
 
 const styles = StyleSheet.create({
     // block container style
-    container:{
-        flex:1
+    container: {
+        flex: 1
     },
 
     // header style
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     },
     headerSubChild1: {
         display: 'flex',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 10,
         marginTop: 10
@@ -135,52 +135,52 @@ const styles = StyleSheet.create({
     },
 
     // body style
-    body:{
-        flex:10
+    body: {
+        flex: 10
     },
-    image: { 
-        width: '100%', 
-        height: 250 ,
-        flex:1
+    image: {
+        width: '100%',
+        height: 250,
+        flex: 1
     },
-    postion:{
-        flex:1,
-        flexDirection:'column',
-        alignItems:'center',
-        marginTop:'1%'
+    postion: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '1%'
     },
-    impActivity:{
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'space-around',
-        marginTop:'1%'
+    impActivity: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: '1%'
     },
-    impActivityChils:{
-        alignItems:'center'
-    },  
-    interests:{
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'space-evenly',
-        marginTop:'1%'
+    impActivityChils: {
+        alignItems: 'center'
     },
-    interestChild:{
-        height:50,
-        width:50,
-        backgroundColor:'#53ADAB',
-        borderRadius:50,
-        elevation:5,
-        padding:15,
-        
+    interests: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: '1%'
     },
-    about:{
-        flex:1,
-        padding:10,
+    interestChild: {
+        height: 50,
+        width: 50,
+        backgroundColor: '#53ADAB',
+        borderRadius: 50,
+        elevation: 5,
+        padding: 15,
 
     },
-    followMe:{
-        flex:1,
-       padding:10,
+    about: {
+        flex: 1,
+        padding: 10,
+
+    },
+    followMe: {
+        flex: 1,
+        padding: 10,
     }
 })
 

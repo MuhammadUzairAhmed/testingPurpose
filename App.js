@@ -12,37 +12,22 @@ import {
 import Main from './app/components/Main'
 import Eventlist from './app/components/listOfEvents';
 import LatesEvents from './app/components/latestEvents'
-import { createDrawerNavigator, createStackNavigator, createSwitchNavigator ,createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import { createDrawerNavigator, createStackNavigator, createSwitchNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/AntDesign';
 import LatestProfile from './app/components/latestProfile';
-import LatestHome from './app/components/latesHome' 
+import LatestHome from './app/components/latesHome'
 import ContactList from './app/components/contacts'
 import Notifications from './app/components/notifications';
 import NotificationsPosts from './app/components/notificationPost'
 import LoginForm from './app/components/LoginForm'
 import IconGrouped from './app/components/iconGrouped'
 import ItemsDragged from './app/components/draggableIcons'
-// class App extends Component{
-//   render(){
-//     return(
-//       <Main />
-//       // <Eventlist />
-//     )
-//   }
-// }
 
-// export default App;
 class AboutScreen extends React.Component {
   static navigationOptions = {
     drawerLabel: 'About',
     drawerIcon: () => (<Icon name='bars' size={18} color="black" />),
-    // headerStyle: {
-    //   backgroundColor: '#f4511e',
-    // },
-    // headerTintColor: '#fff',
-    // headerTitleStyle: {
-    //   fontWeight: 'bold',
-    // },
+
   };
 
   render() {
@@ -115,14 +100,10 @@ const DrawerNavigator = createDrawerNavigator(
   {
     Login: LoginForm,
     Home: Main,
-    Grouped: IconGrouped,
-    Item:ItemsDragged,
-    // About: AboutScreen,
-    Events: LatesEvents,
+   Events: LatesEvents,
     Profile: LatestProfile,
-    Contact:ContactList,
+    Contact: ContactList,
     Notification: Notifications
-    // Notipost: NotificationsPosts
   }
   ,
   {

@@ -12,10 +12,11 @@ import {
     FlatList,
     ImageBackground,
     TouchableHighlight,
-    Modal
+    Modal,
+    Picker
 } from 'react-native';
 import Video from 'react-native-video';
-import { Card, Button, Divider, SearchBar, ButtonGroup } from 'react-native-elements';
+import { Card, Button, Divider, SearchBar, ButtonGroup  } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome'
 // import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -25,7 +26,6 @@ class Main extends Component {
     static navigationOptions = {
         drawerLabel: 'Home',
         drawerIcon: () => (<Icon name='home' size={18} color="black" />)
-
     };
     constructor(props) {
         super(props);
@@ -38,6 +38,7 @@ class Main extends Component {
                 // { id: 4, title: "Notification", name: 'bells', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/family.png" },
                 // { id: 5, title: "Contact", name: 'contacts', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
             ],
+            pickerValue:'',
             valuess: {},
             chekGrouped: false,
             modalVisible: false,
@@ -69,12 +70,12 @@ class Main extends Component {
                 { id: 2, title: "Home", name: 'home', color: "#53ADAB", image: "https://img.icons8.com/office/70/000000/home-page.png" },
                 { id: 3, title: "Events", name: 'table', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/two-hearts.png" },
                 { id: 4, title: "Notification", name: 'bells', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/family.png" },
-               
                 { id: 6, title: "message", name: 'mail', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/classroom.png" },
                 { id: 7, title: "Contact", name: 'contacts', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/checklist.png" },
                 { id: 8, title: "idcard", name: 'idcard', color: "#53ADAB", image: "https://img.icons8.com/dusk/70/000000/globe-earth.png" },
                 { id: 9, title: "slack", name: 'slack', color: "#53ADAB", image: "https://img.icons8.com/color/70/000000/basketball.png" },
-            ]
+            ],
+
         };
     }
     getData = (item) => {
@@ -118,7 +119,7 @@ class Main extends Component {
             this.state.data.splice(index, 1)
             this.setState({ data: this.state.data }, () => {
                 this.setState({ data1: [...this.state.data1, item] })
-            })
+            },()=>console.log(this.state.data1,'chek'))
         }, 300)
     }
     deletedItem = (item, index) => {
@@ -132,15 +133,23 @@ class Main extends Component {
     displayModalContainer = (value) => {
         this.setState({ modalVisible1: value })
     }
-
+    changeMenu=(item,index)=>{
+        this.setState({pickerValue:item})
+        let getData = this.state.data.find((items)=>{
+         return items.id == item
+        })
+        setTimeout(() => {
+        this.pressedOut(index,getData)
+        },500)
+        console.log(index,getData,'check')
+    }
     render() {
         const { navigation } = this.props;
         const email = navigation.getParam('email', 'No-Email');
         const password = navigation.getParam('password', 'some default value');
 
         const { defaultColor, selectedColor, defaultbackColor, selectedBackColor, defaultFont, selectedFont } = this.state
-        const buttons = ['Invite', 'Chat', 'Followers']
-        const { selectedIndex } = this.state
+      
         const { data, modalName, modalImage } = this.state
         return (
             <View style={styles.container} >
@@ -160,6 +169,14 @@ class Main extends Component {
                                 <Icon name="close" size={20} color="red" />
                               </TouchableOpacity>
                                 <View style={styles.container1}>
+                                {/* <View style={{height:'auto',borderWidth:2,borderColor:'grey',width:'80%'}}>
+                                    <Picker
+                                    selectedValue={this.state.pickerValue}
+                                    onValueChange={ (item,index)=>this.changeMenu(item,index)}
+                                    >
+                                        {this.state.data.map((item)=><Picker.Item key={item.id} label={item.title} value={item.id} />)}
+                                    </Picker>
+                                </View> */}
                                     {this.state.data1.map((item,index) => {
                                         return <View> 
                                         

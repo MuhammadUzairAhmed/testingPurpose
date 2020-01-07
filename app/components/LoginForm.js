@@ -34,7 +34,6 @@ export default class LoginView extends Component {
           <Image source={require('./../assets/logo.png')} style={{width:400,height:200}} />  
         </View>
         <View style={styles.inputContainer}>
-          {/* <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/> */}
           <Icon style={[styles.icon, styles.inputIcon]} name="mail" size={20} color="grey" />
           <TextInput style={styles.inputs}
               placeholder="Email"

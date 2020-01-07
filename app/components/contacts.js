@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,48 +11,58 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Divider } from 'react-native-elements'
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
-export default class Contacts extends React.Component {
+let img;
+class Contacts extends Component {
   static navigationOptions = {
     drawerLabel: 'Contacts',
-    drawerIcon:()=>(<Icon name='contacts' size={18} color="black" />)
-   };
+    drawerIcon: () => (<Icon name='contacts' size={18} color="black" />)
+  };
   constructor(props) {
     super(props);
     this.state = {
+      chekValue: '',
+      setImage: '',
       numColumns: 2,
+      refresh: false,
       data: [
         { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
       ],
       calls: [
-        {id:1,  name: "Mark Doe",    status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png", email:'uzair@gmail.com'},
-        {id:2,  name: "Clark Man",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar6.png", email:'joeee@gmail.com'} ,
-        // {id:3,  name: "Jaden Boor",  status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar5.png"} ,
-        // {id:4,  name: "Srick Tree",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar4.png", email:'uzair@gmail.com'} ,
-        // {id:5,  name: "Erick Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar3.png", email:'uzair@gmail.com'} ,
-        // {id:6,  name: "Francis Doe", status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar2.png", email:'joeee@gmail.com'} ,
-        // {id:8,  name: "Matilde Doe", status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png", email:'joeee@gmail.com'} ,
-        // {id:9,  name: "John Doe",    status:"not active", image:"https://bootdey.com/img/Content/avatar/avatar4.png", email:'joeee@gmail.com'} ,
-        // {id:10, name: "Fermod Doe",  status:"active", image:"https://bootdey.com/img/Content/avatar/avatar7.png", email:'joeee@gmail.com'} ,
-        // {id:11, name: "Danny Doe",   status:"active", image:"https://bootdey.com/img/Content/avatar/avatar1.png", email:'joeee@gmail.com'},
+        { id: 1, name: "Mark Doe", status: "active", image: require('./../assets/donnieyen.jpg'), email: 'uzair@gmail.com' },
+        { id: 2, name: "Clark Man", status: "active", image: require('./../assets/nightFl.jpg'), email: 'joeee@gmail.com' },
       ]
     };
+  }
+  componentDidMount() {
+    this.setState({
+      refresh: !this.state.refresh
+    })
+  }
+  componentDidUpdate(prevprops, prevstate) {
+    let email = this.props.navigation.getParam('email', 'No-Email');
+    if (prevprops != this.props) {
+      this.setState({
+        refresh: !this.state.refresh
+      })
+    }
   }
 
   renderItem = ({ item, index }) => {
     const { navigation } = this.props;
-        const email = navigation.getParam('email', 'No-Email');
-        const password = navigation.getParam('password', 'some default value');
+    const email = navigation.getParam('email', 'No-Email');
+    console.log('renderItem', email)
+    const password = navigation.getParam('password', 'some default value');
     if (item.empty === true) {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
-    return (item.email == email ? 
+    return (item.email != email ?
       <View style={[styles.item, { height: 150 }]}>
-        <View style={{backgroundColor:'rgba(47,163,218, .4)',borderRadius:20}}>
-          <ImageBackground source={require('./../assets/img4.jpg')} style={[styles.item, { height:150}]}>
-          <Text style={styles.itemText}>{item.name}</Text>
+        <View style={{ backgroundColor: 'rgba(47,163,218, .4)', borderRadius: 20 }}>
+          <ImageBackground source={item.image} style={[styles.item, { height: 150 }]}>
+            <Text style={styles.itemText}>{item.name}</Text>
           </ImageBackground>
         </View>
-      </View>: null
+      </View> : null
     );
   }
 
@@ -68,10 +78,9 @@ export default class Contacts extends React.Component {
 
   render() {
     const { navigation } = this.props;
-        const email = navigation.getParam('email', 'No-Email');
-        const password = navigation.getParam('password', 'some default value');
-        console.log(email,'contactss')
-        console.log(password)
+    const email = navigation.getParam('email', 'No-Email');
+    const password = navigation.getParam('password', 'some default value');
+
     return (
       <View style={{ flex: 1 }}>
         {/* flex 1 */}
@@ -84,15 +93,16 @@ export default class Contacts extends React.Component {
             </View>
           </View>
         </View>
-        <View style={{flex:2,flexDirection:'row',justifyContent:'space-around'}}>
-<View style={{width:'20%'}}><Icon name="contacts" size={70} color="black" /></View>
-<View style={{width:'80%'}}><Text style={{textAlign:'center'}}>Experienced Junior Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in PHP, React Native, Databases, Bootstrap.</Text></View>
+        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View style={{ width: '20%' }}><Icon name="contacts" size={70} color="black" /></View>
+          <View style={{ width: '80%' }}><Text style={{ textAlign: 'center' }}>Experienced Junior Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in PHP, React Native, Databases, Bootstrap.</Text></View>
         </View>
-        <View style={{ padding: 5}}>
-                                    <Divider style={{ backgroundColor: 'grey' }} />
-                                </View>
+        <View style={{ padding: 5 }}>
+          <Divider style={{ backgroundColor: 'grey' }} />
+        </View>
         <View style={{ flex: 9 }}>
           <FlatList
+            extraData={this.state.refresh}
             data={this.formatRow(this.state.calls, this.state.numColumns)}
             style={styles.container}
             renderItem={this.renderItem}
@@ -168,4 +178,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-}); 
+});
+
+export default Contacts;

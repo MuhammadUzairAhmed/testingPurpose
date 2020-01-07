@@ -7,8 +7,8 @@ import { Divider } from 'react-native-elements'
 class LatestEvent extends Component {
     static navigationOptions = {
         drawerLabel: 'Events',
-        drawerIcon:()=>(<Icon name='creditcard' size={18} color="black" />)
-       };
+        drawerIcon: () => (<Icon name='creditcard' size={18} color="black" />)
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ class LatestEvent extends Component {
                 {
                     id: 1,
                     profile: require('./../assets/img4.jpg'),
-                    email:'uzair@gmail.com',
+                    email: 'uzair@gmail.com',
                     name: 'M Uzair',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/containersImage.png'),
@@ -42,7 +42,7 @@ class LatestEvent extends Component {
                     id: 2,
                     profile: require('./../assets/img5.jpg'),
                     name: 'Daniyal kukda',
-                    email:'joeee@gmail.com',
+                    email: 'joeee@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img3.png'),
                     title: 'Fighting Event',
@@ -61,7 +61,7 @@ class LatestEvent extends Component {
                     id: 3,
                     profile: require('./../assets/img2.jpg'),
                     name: 'Akhalaq Khan',
-                    email:'uzair@gmail.com',
+                    email: 'uzair@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img4.jpg'),
                     title: 'Fighting Event',
@@ -82,7 +82,7 @@ class LatestEvent extends Component {
                     name: 'Ammar',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img2.jpg'),
-                    email:'uzair@gmail.com',
+                    email: 'uzair@gmail.com',
                     title: 'Fighting Event',
                     timeStart: '04:00 pm',
                     tiemEnd: '02:17 pm',
@@ -98,7 +98,7 @@ class LatestEvent extends Component {
                 {
                     id: 5,
                     profile: require('./../assets/img4.jpg'),
-                    email:'uzair@gmail.com',
+                    email: 'uzair@gmail.com',
                     name: 'M Uzair',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img5.jpg'),
@@ -118,7 +118,7 @@ class LatestEvent extends Component {
                     id: 6,
                     profile: require('./../assets/img3.png'),
                     name: 'Zahir Khan',
-                    email:'uzair@gmail.com',
+                    email: 'uzair@gmail.com',
                     about: 'Hi, me and my fried maria looking for sociable and cheerful people.',
                     image: require('./../assets/img2.jpg'),
                     title: 'Fighting Event',
@@ -145,7 +145,7 @@ class LatestEvent extends Component {
                 <View style={styles.header}>
                     <View style={styles.headerChild1}>
                         <View style={styles.headerSubChild1}>
-                        <Icon onPress={this.closed}  name='arrowleft' size={20} color="white" onPress={()=>this.props.navigation.navigate('Home')} />
+                            <Icon onPress={this.closed} name='arrowleft' size={20} color="white" onPress={() => this.props.navigation.navigate('Home')} />
                             <Text style={{ ...styles.subHeaderchilds, fontWeight: 'bold' }}>My Events</Text>
                             <Text style={{ ...styles.subHeaderchilds }}>#{this.state.eventData.length} Events</Text>
                         </View>
@@ -166,7 +166,7 @@ class LatestEvent extends Component {
                     <FlatList
                         data={this.state.eventData}
                         renderItem={({ item, index }) => {
-                            return  item.email == email ? <View style={styles.bodyListChild}
+                            return item.email == email ? <View style={styles.bodyListChild}
                                 key={item.id}>
                                 <View style={styles.subBodyList1}>
                                     <View style={styles.subBodyList1C}>
@@ -227,7 +227,7 @@ class LatestEvent extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </View>: null
+                            </View> : null
                         }}
                     />
                 </View>
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     },
     headerSubChild1: {
         display: 'flex',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 10,
         marginTop: 10
